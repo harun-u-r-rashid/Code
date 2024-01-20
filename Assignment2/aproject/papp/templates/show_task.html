@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{%block content %}
+<div style="width : 80%; margin : auto;">
+    {% if data %}
+    <h3 style="width:50%;Margin:auto; color:cadetblue">TASKS</h3>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+
+            <tr>
+                <td>{{i.title}}</td>
+                <td>{{i.description}}</td>
+                <td>{{i.status}}</td>
+                <td>
+                    <a class="btn btn-danger btn-sm" href="{% url 'Delete' id=i.title %}">Delete</a>
+                    <a href="{% url 'Edit' id=i.title %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a class="btn btn-danger btn-sm"  href="{% url 'Complete' id=i.title %}">Complete</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% else %}
+    <h3>No data available</h3>
+    {% endif %}
+
+</div>
+{% endblock %}
+
